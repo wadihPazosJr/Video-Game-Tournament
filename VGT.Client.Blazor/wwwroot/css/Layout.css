@@ -1,3 +1,219 @@
-﻿.test {
+﻿/*Nav Bar Styling*/
+.navbar {
+    background-color: aquamarine;
+    display: flex;
+    align-content: flex-end;
+    justify-content: flex-end;
+    padding: 15px;
+}
+
+.navbar-ul a {
+    text-decoration: none;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin-right: 50px;
+}
+
+.navbar-ul li {
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: black;
+}
+
+.navbar-ul li:hover {
+    color: red;
+}
+
+.navbar-logo {
+    height: 25px;
+    width: 100px;
+    margin-right: auto;
+}
+
+/*Footer Styling*/
+
+.footer {
+    background-color: grey;
+    display: flex;
+    align-items: baseline;
+    padding: 30px 30px 5px 30px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.footer-nameandheader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.footer-nameandheader img {
+    height: 100px;
+    width: 200px;
+}
+
+.footer-list {
+    margin-left: 150px;
+    display: flex;
+}
+
+.footer-list a{
+    text-decoration: none;
+}
+
+.footer-list ul {
+    list-style-type: none;
+}
+
+.footer-list li {
+    color: white;
+    font-size: 15px;
+    margin: 5px;
+}
+
+.footer-list li:hover {
+    color: red;
+}
+
+.footer-listOne {
+    margin-right: 50px;
+}
+
+.footer-rightSide{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right:50px;
+}
+
+.footer-contactUs {
+    margin-left: auto;
+    margin-right: 50px;
+
+}
+
+.footer-contactUs h3{
+    margin-bottom: 10px;
+}
+
+.footer-contactUs ul {
+    list-style-type: none;
+}
+
+.footer-contactUs a{
+    text-decoration: none;
+    color: white;
+}
+
+.footer-contactUs a:hover{
+    text-decoration: none;
+    color: rgb(215, 215, 215);
+}
+
+.footer-contactUs li {
+    margin-bottom: 10px;
+}
+
+.footer-organizations {
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-organizations h3{
+    margin-bottom: 10px;
+}
+
+.orgLists{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+}
+
+.footer-organizations ul {
+    list-style-type: none;
+}
+
+.footer-organizations li{
+    margin-right: 25px;
+    margin-bottom: 20px;
+}
+
+.footer-organizations img {
+    height: 50px;
+    width: 100px;
+}
+
+/*Dynamically changed styles*/
+
+.hamburger-icon {
+    display: none;
+}
+
+.hamburger-icon:hover {
+    cursor: pointer;
+    color: red;
+}
+
+@media only screen and (max-width: 681px){
+    .hamburger-icon {
+        display: inline;
+    }
+
+    .navbar-ul {
+        display: none;
+    }
+
+    .footer-list {
+        display: none;
+    }
+
+    .footer-organizations {
+        display:none;
+    }
+
+    .footer-contactUs {
+        margin-right: 0px;
+        margin-left: auto;
+    }
+}
+/*Find a way so when it reaches this width it goes away currently not working*/
+@media only screen and (min-width: 681px){
+    .secondary-navbar-show {
+        visibility: hidden;
+        height: 0;
+    }
+}
+
+.secondary-navbar-div {
+    display: none;
+}
+
+.secondary-navbar-show {
+    display: flex;
+    justify-content: center;
+    background-color: mediumaquamarine;
+}
+
+.secondary-navbar-show a {
+    text-decoration: none;
+}
+
+.secondary-navbar-show ul {
+    list-style-type: none;
+}
+
+.secondary-navbar-show li {
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-clip: padding-box;
+}
+
+.secondary-navbar-show li:hover {
     color: red;
 }

@@ -1,7 +1,111 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="test">Nav</div>
+@* Navbar *@
+<div class="navbar">
+    @* NavBar Image *@
+    
+    <img class="navbar-logo"src="/images/logo-transparent.png" />
+    
+    @* NavBar Page List *@
+    <ul class="navbar-ul">
+        <a href="/"><li>Home</li></a>
+        <a href="/about"><li>About</li></a>
+        <a href="/register"><li>Register</li></a>
+        <a href="/rules"><li>Rules</li></a>    
+        <a href="/highlights"><li>Highlights</li></a>
+        <a href="/tournament"><li>Tournament</li></a>
+        <a href="/donate"><li>Donate</li></a>
+    </ul>
+    <ion-icon class="hamburger-icon" name="menu-outline" @onclick="changeStateOfHamburger"></ion-icon>
+</div>
+<div class=@_StateOfHamburger>
+    <ul>
+        <a href="/"><li @onclick="changeStateOfHamburger">Home</li></a>
+        <a href="/about"><li @onclick="changeStateOfHamburger">About</li></a>
+        <a href="/register"><li @onclick="changeStateOfHamburger">Register</li></a>
+        <a href="/rules"><li @onclick="changeStateOfHamburger">Rules</li></a>
+        <a href="/highlights"><li @onclick="changeStateOfHamburger">Highlights</li></a>
+        <a href="/tournament"><li @onclick="changeStateOfHamburger">Tournament</li></a>
+        <a href="/donate"><li @onclick="changeStateOfHamburger">Donate</li></a>
+    </ul>
+</div>
 <div>
     @Body
 </div>
-<div class="test">Footer</div>
+@* Footer *@
+<div class="footer">
+    @* This is the name of the company and image to the left of the footer *@
+    <div class="footer-nameandheader">
+        <h2>Games Against COVID</h2>
+        <img src="/images/logo-transparent.png" />
+    </div>
+    @* This is the list of the pages *@
+    <div class="footer-list">
+        <div class="footer-listOne">
+            <ul>
+                <a href="/"><li>Home</li></a>
+                <a href="/register"><li>Register</li></a>
+                <a href="/highlights"><li>Highlights</li></a>
+                <a href="/donate"><li>Donate</li></a>
+            </ul>
+        </div>
+        <div class="footer-listTwo">
+            <ul>
+                <a href="/about"><li>About</li></a>
+                <a href="/rules"><li>Rules</li></a>
+                <a href="/tournament"><li>Tournament</li></a>
+            </ul>
+        </div>
+    </div>
+    @* This is the section with our Contact Information *@
+    <div class="footer-rightSide">
+        <div class="footer-contactUs">
+            <h3>Contact Us</h3>
+            <ul>
+                <a href="tel:+17877742721" target="_blank"><li><ion-icon name="call-outline"></ion-icon> 305-555-5555</li></a>
+                <a href="mailto:covid19@gmail.com" target="_blank"><li><ion-icon name="mail-outline"></ion-icon> covid19@gmail.com</li></a>
+                <a href="instagram.com" target="_blank"><li><ion-icon name="logo-instagram"></ion-icon> Covid_19</li> </a>
+            </ul>
+        </div>
+        @* This is the list of the organizations invovled in the website *@
+        <div class="footer-organizations">
+            <h3>Organizations</h3>
+            <div class= "orgLists">
+                <ul>
+                    <li><img src="/images/coding-angel-logo.png"/></li>
+                    <li><img src="/images/toornament-logo.png"/></li>
+                </ul>
+                <ul id= "rightList">
+                    <li><img src="/images/amazing-grace-logo.png" /></li>
+                    <li><img src="/images/miamimediaoutreach-logo.png" /></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+@*@if(_FogazzyConsole!=string.Empty)
+{
+    <div>@_FogazzyConsole</div>
+}*@
+
+
+@code {
+
+    string _StateOfHamburger = "secondary-navbar-div";
+    //string _FogazzyConsole = string.Empty;
+
+    void changeStateOfHamburger()
+    {
+        //_FogazzyConsole += "Before change of hamburger state: " + _StateOfHamburger;
+        if (_StateOfHamburger == "secondary-navbar-div")
+        {
+            _StateOfHamburger = "secondary-navbar-show";
+        }
+        else
+        {
+            _StateOfHamburger = "secondary-navbar-div";
+        }
+        //_FogazzyConsole += "After change of hamburger state: " + _StateOfHamburger;
+        base.StateHasChanged();
+    }
+}

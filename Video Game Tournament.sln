@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VGT.Server", "VGT.Server\VG
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VGT.Common", "VGT.Common\VGT.Common.csproj", "{E2B07D0C-F36B-4288-9B51-65843A0B1DFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VGT.Client.Blazor", "VGT.Client.Blazor\VGT.Client.Blazor.csproj", "{679B7F6F-1B3D-476F-8553-DE64BE2C6106}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VGT.Client.Blazor", "VGT.Client.Blazor\VGT.Client.Blazor.csproj", "{679B7F6F-1B3D-476F-8553-DE64BE2C6106}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
