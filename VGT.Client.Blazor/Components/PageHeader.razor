@@ -1,0 +1,19 @@
+﻿<div class="page-header">
+    <img src=@_ImageSrc />
+    <div class="page-header-text"> 
+        <h1>@_Header</h1>
+        <p><span class="indent"></span>@ChildContent</p>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string _Header { get; set; }
+
+    [Parameter]
+    public string _ImageSrc { get; set; }
+
+}

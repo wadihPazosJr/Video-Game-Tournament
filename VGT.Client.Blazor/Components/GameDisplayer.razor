@@ -1,0 +1,23 @@
+﻿<a class="game-displayer-anchor" href=@_PagePath>
+    <div class="game-displayer-div">
+        <img class="game-displayer-picture" src=@_PicturePath />
+        <div class="game-displayer-text">
+            <h2>@_NameOfGame</h2>
+            <h3>@ChildContent</h3>
+        </div>
+    </div>
+</a>
+
+@code {    
+    [Parameter]
+    public string _NameOfGame { get; set; }
+
+    [Parameter]
+    public string _PicturePath { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string _PagePath { get; set; }
+}

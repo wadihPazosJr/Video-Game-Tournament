@@ -1,0 +1,48 @@
+﻿@page "/rules/gamerules"
+@page "/rules/gamerules/{nameOfGame}"
+@using System.Globalization
+
+
+
+
+<div class="game-rules-container">
+    <div class="game-rules-header">
+        <img src=@_ImageSrc />
+        <h1>@_GameName Rules</h1>
+    </div>
+    @if (NameOfGame == "clash-royale")
+    {
+        <ul class="game-rules-unorderedList">
+            <li>Rule one</li>
+            <li>Rule one</li>
+            <li>Rule one</li>
+            <li>Rule one</li>
+            <li>Rule one</li>
+        </ul>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string NameOfGame { get; set; }
+
+    string _GameName = null;
+
+    string _ImageSrc = null;
+
+    protected override void OnInitialized()
+    {
+        _GameName = new CultureInfo("en-US", false).TextInfo.ToTitleCase(NameOfGame.Replace('-', ' '));
+
+        switch (NameOfGame)
+        {
+            case "clash-royale":
+                _ImageSrc = "/images/clash-royale-logo.png";
+                break;
+        };
+    }
+}
+
+
+
+
