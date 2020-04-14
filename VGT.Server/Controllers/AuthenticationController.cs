@@ -41,7 +41,7 @@ namespace VGT.Server.Controllers
             //Update the tokens with valid values by calling the Toornament API client and getting them by trading the temporary code passed to this method.
             if (Request.Query.ContainsKey("code"))
             {
-                //Get the temporary code given by Blackbaud from the query string
+                //Get the temporary code given by Toornament from the query string
                 string code = Request.Query["code"];
                 if (Request.Query.ContainsKey("state"))
                 {
@@ -60,9 +60,9 @@ namespace VGT.Server.Controllers
                         "application/x-www-form-urlencoded"));
                 }
                 else
-                    throw new ArgumentException("The CallbackAsync method expects to be called by Blackbaud and expects to have the tenant ID passed back in the state request param");
+                    throw new ArgumentException("The CallbackAsync method expects to be called by Toornament and expects to have the login session id (State) passed back in the state request param");
             }
-            throw new ArgumentException("The CallbackAsync method expects to be called by Blackbaud and expects to have a temporary access code in the query string");
+            throw new ArgumentException("The CallbackAsync method expects to be called by Toornament and expects to have a temporary access code in the query string");
 
         }
 
