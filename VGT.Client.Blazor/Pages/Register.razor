@@ -32,7 +32,7 @@
     else
     {
         <h1>Single</h1>
-        <EditForm Model="@_Participant" OnValidSubmit ="HandleValidSubmit" >
+        <EditForm Model="@_Participant" OnValidSubmit="HandleValidSubmit">
             <p>
                 <label>
                     First Name
@@ -71,11 +71,20 @@
     }
 
     <h1>@_Participant.ParticipantFirstName</h1>
+    <h1>Login Result:</h1>
+
+    @if (_CurrentToken!=null)
+    {
+        <h2>Logged In:</h2>
+        <div>Token: @_CurrentToken.AccessToken</div>
+        <div>Expires On: @_CurrentToken.ExpirationDateTime.ToString()</div>
+    }
 }
 
 @code
 { string _CurrentGameChosen = null;
     Participant _Participant = new Participant();
+    ToornamentToken _CurrentToken = null;
 
     public class Participant
     {
@@ -111,6 +120,7 @@
     {
         //Get a toornament token using the client auth flow described here
         //Post to the tooernametn token endpoint
-
+        _CurrentToken = await Http.PostJsonAsync<ToornamentToken>("https://localhost:44366/Authentication/LoginToToornament?LoginSessionID=12345", null);
     }
+
 }

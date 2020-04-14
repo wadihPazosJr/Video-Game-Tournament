@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using VGT.Server.CustomFilters;
 
 namespace VGT.Server
 {
@@ -47,15 +48,11 @@ namespace VGT.Server
                             .AllowAnyMethod();
                 });
             });
-            services.AddSingleton<CosmosClient>(
-                 new CosmosClientBuilder
-                         (
-                             accountEndpoint: Configuration.GetSection("CosmosDb")["AccountURL"],
-                             authKeyOrResourceToken: Configuration.GetSection("CosmosDb")["Key"]
-                         ).WithConnectionModeDirect()
-                             .Build());
+           
             services.AddSingleton<IConfiguration>(Configuration);
 
+            services.AddControllers(options =>
+                options.Filters.Add(new HttpResponseExceptionFilter()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
