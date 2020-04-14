@@ -12,9 +12,11 @@
     align-content: center;
 }
 
-.game-rules-header img{
-    height: 250px;
-    width: 250px;
+.game-rules-header img {
+    min-height: 250px;
+    min-width: 250px;
+    max-height: 250px;
+    max-width: 250px;
 }
 
 .game-rules-header h1 {
@@ -22,8 +24,8 @@
     width: auto;
     display: inline;
     align-self: center;
-    font-size: 75px;
-    margin-left: 75px;
+    font-size: 50px;
+    margin-left: 50px;
 }
 
 .game-rules-unorderedList {

@@ -1,0 +1,56 @@
+﻿@page "/tournament/{nameOfGame}"
+@using System.Globalization
+
+
+
+    <div class="game-rules-header">
+        <img src=@_ImageSrc />
+        <h1>@_GameName Tournament</h1>
+    </div>
+
+
+        @code {
+            [Parameter]
+            public string NameOfGame { get; set; }
+
+            string _GameName = null;
+
+            string _ImageSrc = null;
+
+            protected override void OnInitialized()
+            {
+                _GameName = NameOfGame == "nba-2k20" ? "NBA 2K 20" : new CultureInfo("en-US", false).TextInfo.ToTitleCase(NameOfGame.Replace('-', ' '));
+
+                switch (NameOfGame)
+                {
+                    case "clash-royale":
+                        _ImageSrc = "/images/clash-royale-logo.png";
+                        break;
+                    case "mario-kart-8":
+                        _ImageSrc = "/images/MarioKart8Box.jpg";
+                        break;
+                    case "rainbow-six-siege":
+                        _ImageSrc = "/images/RainbowSixSiege.jpg";
+                        break;
+                    case "minecraft":
+                        _ImageSrc = "/images/Minecraft.png";
+                        break;
+                    case "call-of-duty-warzone":
+                        _ImageSrc = "/images/WarZone.jpg";
+                        break;
+                    case "nba-2k20":
+                        _ImageSrc = "/images/NBA-2K20.jpg";
+                        break;
+                    case "league-of-legends":
+                        _ImageSrc = "/images/LOL.jpg";
+                        break;
+                    case "super-smash-bros-ultimate":
+                        _ImageSrc = "/images/SSBU.jpg";
+                        break;
+                };
+            }
+        }
+
+
+
+

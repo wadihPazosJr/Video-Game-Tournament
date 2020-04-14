@@ -5,22 +5,99 @@
 
 
 
-<div class="game-rules-container">
-    <div class="game-rules-header">
-        <img src=@_ImageSrc />
-        <h1>@_GameName Rules</h1>
+    <div class="game-rules-container">
+        <div class="game-rules-header">
+            <img src=@_ImageSrc />
+            <h1>@_GameName Rules</h1>
+        </div>
+        @if (NameOfGame == "clash-royale")
+        {
+            <ul class="game-rules-unorderedList">
+                <li>Clash Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+            </ul>
+        }
+
+        @if (NameOfGame == "mario-kart-8")
+        {
+            <ul class="game-rules-unorderedList">
+                <li>Kart Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+            </ul>
+        }
+
+        @if (NameOfGame == "rainbow-six-siege")
+        {
+            <ul class="game-rules-unorderedList">
+                <li>Rainbow Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+            </ul>
+        }
+
+        @if (NameOfGame == "minecraft")
+        {
+            <ul class="game-rules-unorderedList">
+                <li>Minecraft Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+            </ul>
+        }
+
+        @if (NameOfGame == "call-of-duty-warzone")
+        {
+            <ul class="game-rules-unorderedList">
+                <li>Warzone Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+            </ul>
+        }
+
+        @if (NameOfGame == "nba-2k20")
+        {
+            <ul class="game-rules-unorderedList">
+                <li>NBA Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+            </ul>
+        }
+
+        @if (NameOfGame == "league-of-legends")
+        {
+            <ul class="game-rules-unorderedList">
+                <li>LOL Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+            </ul>
+        }
+
+        @if (NameOfGame == "super-smash-bros-ultimate")
+        {
+            <ul class="game-rules-unorderedList">
+                <li>Smash Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+                <li>Rule one</li>
+            </ul>
+        }
     </div>
-    @if (NameOfGame == "clash-royale")
-    {
-        <ul class="game-rules-unorderedList">
-            <li>Rule one</li>
-            <li>Rule one</li>
-            <li>Rule one</li>
-            <li>Rule one</li>
-            <li>Rule one</li>
-        </ul>
-    }
-</div>
 
 @code {
     [Parameter]
@@ -32,12 +109,33 @@
 
     protected override void OnInitialized()
     {
-        _GameName = new CultureInfo("en-US", false).TextInfo.ToTitleCase(NameOfGame.Replace('-', ' '));
+        _GameName = NameOfGame == "nba-2k20" ? "NBA 2K 20" : new CultureInfo("en-US", false).TextInfo.ToTitleCase(NameOfGame.Replace('-', ' '));
 
         switch (NameOfGame)
         {
             case "clash-royale":
                 _ImageSrc = "/images/clash-royale-logo.png";
+                break;
+            case "mario-kart-8":
+                _ImageSrc = "/images/MarioKart8Box.jpg";
+                break;
+            case "rainbow-six-siege":
+                _ImageSrc = "/images/RainbowSixSiege.jpg";
+                break;
+            case "minecraft":
+                _ImageSrc = "/images/Minecraft.png";
+                break;
+            case "call-of-duty-warzone":
+                _ImageSrc = "/images/WarZone.jpg";
+                break;
+            case "nba-2k20":
+                _ImageSrc = "/images/NBA-2K20.jpg";
+                break;
+            case "league-of-legends":
+                _ImageSrc = "/images/LOL.jpg";
+                break;
+            case "super-smash-bros-ultimate":
+                _ImageSrc = "/images/SSBU.jpg";
                 break;
         };
     }

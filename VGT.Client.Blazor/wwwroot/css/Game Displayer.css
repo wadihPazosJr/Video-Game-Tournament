@@ -3,8 +3,8 @@
     justify-content: flex-start;
     align-content: flex-start;
     flex-direction: row;
-    height: auto;
-    width: auto;
+    height: 110px;
+    width: 270px;
     border: 5px solid black;
     border-radius: 5%;
     padding: 25px;
@@ -16,9 +16,11 @@
     background-color: darkgrey;
 }
 
-.game-displayer-picture {
-    height: 100px;
-    width: 100px;
+#game-displayer-picture {
+    min-height: 100px;
+    min-width: 100px;
+    max-height: 100px;
+    max-width: 100px;
 }
 
 .game-displayer-text {

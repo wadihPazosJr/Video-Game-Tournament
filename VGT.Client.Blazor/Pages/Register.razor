@@ -1,6 +1,116 @@
 ﻿@page "/register"
 @using VGT.Client.Blazor.Components
+@using System.ComponentModel.DataAnnotations;
+@inject HttpClient Http
 
 <PageHeader _Header="Register" _ImageSrc="/images/amazing-grace-logo.png">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</PageHeader>
 
+<h1>Choose your game</h1>
+<form>
+    <select @bind="_CurrentGameChosen">
+        <option value="|Mario Kart 8 Deluxe">Mario Kart 8 Deluxe</option>
+        <option value="|Rainbow Six Siege">Rainbow Six Siege</option>
+        <option value="|Minecraft">Minecraft</option>
+        <option value="|Clash Royale">Clash Royale</option>
+        <option value="|Call of Duty : Warzone">Call of Duty : Warzone</option>
+        <option value="|NBA 2K20">NBA 2K20</option>
+        <option value="|League of Legends">League of Legends</option>
+        <option value="|Super Smash Bros Ultimate">Super Smash Bros Ultimate</option>
+    </select>
+</form>
 
+
+@if (_CurrentGameChosen != null)
+{
+    if (
+     _CurrentGameChosen.Contains("Rainbow Six Siege") ||
+     _CurrentGameChosen.Contains("League of Legends")
+    )
+    {
+        <h1>Team</h1>
+    }
+    else
+    {
+        <h1>Single</h1>
+        <EditForm Model="@_Participant" OnValidSubmit ="HandleValidSubmit" >
+            <p>
+                <label>
+                    First Name
+                    <InputText @bind-Value="_Participant.ParticipantFirstName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Last Name
+                    <br />
+                    <InputText @bind-Value="_Participant.ParticipantLastName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Email
+                    <InputText @bind-Value="_Participant.ParticipantEMail" placeholder="johndoe@gmail.com" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Phone Number
+                    <InputText @bind-Value="_Participant.PhoneOfParticipant" placeholder="(xxx)-xxx-xxxx" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    In Game Name
+                    <InputText @bind-Value="_Participant.InGameName" />
+                </label>
+            </p>
+            <button type="submit">
+                Submit
+            </button>
+        </EditForm>
+    }
+
+    <h1>@_Participant.ParticipantFirstName</h1>
+}
+
+@code
+{ string _CurrentGameChosen = null;
+    Participant _Participant = new Participant();
+
+    public class Participant
+    {
+        [Required, Display(Name = "Game")]
+        public string GameChosen { get; set; }
+        [Required, Display(Name = "First Name")]
+        public string ParticipantFirstName { get; set; }
+        [Required, Display(Name = "Last Name")]
+        public string ParticipantLastName { get; set; }
+        [Required, Display(Name = "eMail")]
+        public string ParticipantEMail { get; set; }
+        [Required, Display(Name = "Phone")]
+        public string PhoneOfParticipant { get; set; }
+        [Required, Display(Name = "In Game Name")]
+        public string InGameName { get; set; }
+    }
+
+    public class Team
+    {
+        [Required, Display(Name = "Team Name")]
+        public string NameOfTeam { get; set; }
+
+        [Required]
+        public List<Participant> TeamMembers = new List<Participant>(5);
+    }
+
+    public void GameSelected()
+    {
+        base.StateHasChanged();
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        //Get a toornament token using the client auth flow described here
+        //Post to the tooernametn token endpoint
+
+    }
+}
