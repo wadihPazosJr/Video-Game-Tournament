@@ -25,6 +25,9 @@
 
 .game-displayer-text {
     margin-left: 25px;
+}
+
+.game-displayer-text h2, .game-displayer-text h3 {
     color: black;
 }
 

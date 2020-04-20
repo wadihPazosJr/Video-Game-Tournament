@@ -14,7 +14,29 @@
     flex-direction: column;
 }
 
+.page-header-text p {
+    line-height: 2em;
+}
+
 .page-header-text h1 {
     margin-top: 5px;
     margin-bottom: 15px;
+}
+
+@media only screen and (max-width: 681px) {
+    .page-header {
+        margin: 0 10%;
+        flex-direction: column;
+        align-content: center;
+    }
+
+    .page-header img, .page-header-text h1, .page-header-text p {
+        align-self: center;
+    }
+
+    .page-header img {
+        margin-right: 0;
+    }
+
+    
 }

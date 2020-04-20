@@ -4,3 +4,12 @@
     flex-wrap: wrap;
     justify-content:space-evenly;
 }
+
+#rulesMailLink {
+    text-decoration: none;
+    color: black;
+}
+
+#rulesMailLink:hover{
+    color: red;
+}
