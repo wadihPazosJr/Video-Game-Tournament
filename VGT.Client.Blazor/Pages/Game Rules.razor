@@ -133,7 +133,7 @@
     {
         _GameName = NameOfGame == "nba-2k20" ? "NBA 2K 20" : new CultureInfo("en-US", false).TextInfo.ToTitleCase(NameOfGame.Replace('-', ' '));
 
-        PageTitle  = "Games Against COVID | " + _GameName + " Rules";
+        PageTitle  = _GameName + " Rules | Games Against COVID";
         
         switch (NameOfGame)
         {

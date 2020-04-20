@@ -1,15 +1,16 @@
-﻿@*@page "/register"
+﻿@page "/register"
 @using VGT.Client.Blazor.Components
 @using System.ComponentModel.DataAnnotations;
 @inject HttpClient Http
 
-<PageTitle Title="Games Against COVID | Register"></PageTitle>
+<PageTitle Title="Register | Games Against COVID"></PageTitle>
 
 <PageHeader _Header="Register" _ImageSrc="/images/amazing-grace-logo.png">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</PageHeader>
 
 <h1>Choose your game</h1>
 <form>
     <select @bind="_CurrentGameChosen">
+        <option>Pick a game</option>
         <option value="|Mario Kart 8 Deluxe">Mario Kart 8 Deluxe</option>
         <option value="|Rainbow Six Siege">Rainbow Six Siege</option>
         <option value="|Minecraft">Minecraft</option>
@@ -296,4 +297,4 @@
         _CurrentToken = await Http.PostJsonAsync<ToornamentToken>("https://localhost:44366/Authentication/LoginToToornament?LoginSessionID=12345", null);
     }
 
-}*@
+}
