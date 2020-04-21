@@ -1,0 +1,62 @@
+﻿@page "/toornamenttokenredirect"
+@using VGT.Client.Blazor.Components
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.WebUtilities
+@using Microsoft.Extensions.Primitives
+@using System.Web
+@inject HttpClient Http
+@inject NavigationManager NavManager
+@inject ILocalStorageService localStorage
+@*Show errors in red*@
+@if (_ErrorRecieved != string.Empty)
+{
+    <p style="color: red"><em>Error Encountered: @_ErrorRecieved</em></p>
+}
+
+@if (_FogazzyConsole != string.Empty)
+{
+    <p style="color: #4800ff"><em>Console: @_FogazzyConsole</em></p>
+}
+
+<button @onclick="Redirect">Redirect</button>
+
+@code
+{
+    protected string _ErrorRecieved = string.Empty;
+    protected string _FogazzyConsole = string.Empty;
+
+    string _redirectURL = string.Empty;
+
+    private void Redirect()
+    {
+        NavManager.NavigateTo(HttpUtility.UrlDecode(_redirectURL));
+    }
+
+    protected override void OnInitialized()
+    {
+        Dictionary<string, StringValues> queryParams = null;
+        try
+        {
+            queryParams = QueryHelpers.ParseQuery((NavManager.ToAbsoluteUri(NavManager.Uri)).Query);
+
+            if (queryParams.ContainsKey("RedirectURI"))
+            {
+                _redirectURL = queryParams["RedirectURI"];
+                _FogazzyConsole += _redirectURL;
+                //NavManager.NavigateTo(HttpUtility.UrlDecode(queryParams["RedirectURI"]));
+            }
+            else
+            {
+                _ErrorRecieved = "Expected RedirectURI parameter";
+                return;
+            }
+        }
+        catch (Exception eX)
+        {
+            _ErrorRecieved += eX.ToString() + "\n\n";
+            this.StateHasChanged();
+        }
+    }
+}
+
+

@@ -29,26 +29,32 @@ namespace VGT.Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
-
-            services.AddControllers();
             services.AddCors(options =>
             {
-                options.AddPolicy(_myAllowSpecificOrigins,
-                builder =>
-                {
-                    string[] clientSitesAllowed = Configuration.GetSection("ClientSitesAllowed").Get<List<string>>().ToArray();
+                ////options.AddPolicy(_myAllowSpecificOrigins,
+                ////builder =>
+                ////{
+                ////    string[] clientSitesAllowed = Configuration.GetSection("ClientSitesAllowed").Get<List<string>>().ToArray();
 
-                    //If a single entry in the appconfig (*) was used then assume that to be a wildcard and add any origin
-                    if (clientSitesAllowed.Length == 1 && clientSitesAllowed[0] == "*")
-                        builder.AllowAnyOrigin();
-                    else
-                        builder.WithOrigins(Configuration.GetSection("ClientSitesAllowed").Get<List<string>>().ToArray())
-                            .AllowAnyHeader()
-                            .AllowAnyMethod();
-                });
+                ////    //If a single entry in the appconfig (*) was used then assume that to be a wildcard and add any origin
+                ////    if (clientSitesAllowed.Length == 1 && clientSitesAllowed[0] == "*")
+                ////        builder.AllowAnyOrigin();
+                ////    else
+                ////        builder.WithOrigins(Configuration.GetSection("ClientSitesAllowed").Get<List<string>>().ToArray())
+                ////            .AllowAnyHeader()
+                ////            .AllowAnyMethod();
+                //});
+                string[] clientSitesAllowed = Configuration.GetSection("ClientSitesAllowed").Get<List<string>>().ToArray();
+                options.AddPolicy(name: _myAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      if (clientSitesAllowed.Length == 1 && clientSitesAllowed[0] == "*")
+                                          builder.AllowAnyOrigin();
+                                      else
+                                          builder.WithOrigins(clientSitesAllowed);
+                                  });
             });
-           
+            services.AddControllers();
             services.AddSingleton<IConfiguration>(Configuration);
 
             services.AddControllers(options =>
