@@ -1,0 +1,38 @@
+﻿.donate-container {
+    display: flex;
+    flex-direction: row;
+    margin: 25px 15%;
+}
+
+.donate-container img {
+    max-width: 250px;
+    min-width: 250px;
+    max-height: 250px;
+    min-height: 250px;
+}
+
+.donate-text {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}
+
+.donate-text p {
+    margin-top: 25px;
+    line-height: 1.5em;
+}
+
+@media only screen and (max-width: 681px){
+    .donate-container {
+        flex-direction: column;
+        margin: 25px 0;
+    }
+
+    .donate-text {
+        margin: 5px;
+    }
+
+    .donate-container img {
+        align-self: center;
+    }
+}

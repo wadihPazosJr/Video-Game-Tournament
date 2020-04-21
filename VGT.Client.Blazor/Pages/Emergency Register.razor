@@ -1,0 +1,25 @@
+﻿@*@page "/register"
+@using VGT.Client.Blazor.Components
+
+<PageTitle Title="Register | Games Against COVID"></PageTitle>
+
+<PageHeader _Header="Register" _ImageSrc="/images/amazing-grace-logo.png">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</PageHeader>
+<form>
+    <select @bind="_GameChosen">
+        <option>Pick a game</option>
+        <option value="https://widget.toornament.com/tournaments/3476251879890862080/registration?_locale=en_US&theme=discipline">Mario Kart 8 Deluxe</option>
+        <option value="https://widget.toornament.com/tournaments/3476254303505145856/registration?_locale=en_US&theme=discipline">Rainbow Six Siege</option>
+        <option value="https://widget.toornament.com/tournaments/3476256720841089024/registration?_locale=en_US&theme=discipline">Minecraft</option>
+        <option value="https://widget.toornament.com/tournaments/3476257827289923584/registration?_locale=en_US&theme=discipline">Clash Royale</option>
+        <option value="https://widget.toornament.com/tournaments/3476259067863236608/registration?_locale=en_US&theme=discipline">Call of Duty: Warzone</option>
+        <option value="https://widget.toornament.com/tournaments/3476260676093149184/registration?_locale=en_US&theme=discipline">NBA 2K20</option>
+        <option value="https://widget.toornament.com/tournaments/3476261911264198656/registration?_locale=en_US&theme=discipline">League of Legends</option>
+        <option value="https://widget.toornament.com/tournaments/3476263981375184896/registration?_locale=en_US&theme=discipline">Super Smash Bros Ultimate</option>
+    </select>
+</form>
+
+<iframe width="300" height="88" src=@_GameChosen allowfullscreen frameborder="0"></iframe>
+
+@code {
+    string _GameChosen = null;
+}*@

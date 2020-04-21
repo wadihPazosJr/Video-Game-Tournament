@@ -6,3 +6,11 @@
 .indent {
     margin-left: 50px;
 }
+
+h1, h2, h3, h4, li, a, p, div {
+    font-family: 'Fredoka One', cursive;
+}
+
+h1, h2, h3, h4 {
+    color: midnightblue;
+}

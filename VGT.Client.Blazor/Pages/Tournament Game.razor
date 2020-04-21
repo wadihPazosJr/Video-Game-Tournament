@@ -1,55 +1,76 @@
 ﻿@page "/tournament/{nameOfGame}"
 @using System.Globalization
 
+<PageTitle Title=@PageTitle></PageTitle>
 
+<div class="tournament-game-header">
+    <img src=@_ImageSrc />
+    <h1>@_GameName Tournament</h1>
+</div>
+<div class="tournament-game-content">
+    
+    
+    <iframe width="853" height="480" src=@_IFrameSrc allowfullscreen frameborder="0"></iframe>
+    
 
-    <div class="game-rules-header">
-        <img src=@_ImageSrc />
-        <h1>@_GameName Tournament</h1>
-    </div>
+    <iframe width="853" height="480" src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
+@code {
+    [Parameter]
+    public string NameOfGame { get; set; }
 
-        @code {
-            [Parameter]
-            public string NameOfGame { get; set; }
+    string _GameName = null;
 
-            string _GameName = null;
+    string _ImageSrc = null;
 
-            string _ImageSrc = null;
+    string _IFrameSrc = null;
 
-            protected override void OnInitialized()
-            {
-                _GameName = NameOfGame == "nba-2k20" ? "NBA 2K 20" : new CultureInfo("en-US", false).TextInfo.ToTitleCase(NameOfGame.Replace('-', ' '));
+    private string PageTitle = null;
 
-                switch (NameOfGame)
-                {
-                    case "clash-royale":
-                        _ImageSrc = "/images/clash-royale-logo.png";
-                        break;
-                    case "mario-kart-8":
-                        _ImageSrc = "/images/MarioKart8Box.jpg";
-                        break;
-                    case "rainbow-six-siege":
-                        _ImageSrc = "/images/RainbowSixSiege.jpg";
-                        break;
-                    case "minecraft":
-                        _ImageSrc = "/images/Minecraft.png";
-                        break;
-                    case "call-of-duty-warzone":
-                        _ImageSrc = "/images/WarZone.jpg";
-                        break;
-                    case "nba-2k20":
-                        _ImageSrc = "/images/NBA-2K20.jpg";
-                        break;
-                    case "league-of-legends":
-                        _ImageSrc = "/images/LOL.jpg";
-                        break;
-                    case "super-smash-bros-ultimate":
-                        _ImageSrc = "/images/SSBU.jpg";
-                        break;
-                };
-            }
-        }
+    protected override void OnInitialized()
+    {
+        _GameName = NameOfGame == "nba-2k20" ? "NBA 2K 20" : new CultureInfo("en-US", false).TextInfo.ToTitleCase(NameOfGame.Replace('-', ' '));
+
+        PageTitle = _GameName + " Tournament | Games Against COVID";
+
+        switch (NameOfGame)
+        {
+            case "clash-royale":
+                _ImageSrc = "/images/clash-royale-logo.png";
+                _IFrameSrc = "https://widget.toornament.com/tournaments/3476257827289923584/stages/3478892681068101632/?_locale=en_US";
+                break;
+            case "mario-kart-8":
+                _ImageSrc = "/images/MarioKart8Box.jpg";
+                _IFrameSrc = "https://widget.toornament.com/tournaments/3476251879890862080/stages/3487207813563441152/?_locale=en_US";
+                break;
+            case "rainbow-six-siege":
+                _ImageSrc = "/images/RainbowSixSiege.jpg";
+                _IFrameSrc = "https://widget.toornament.com/tournaments/3476254303505145856/stages/3478911030518898688/?_locale=en_US";
+                break;
+            case "minecraft":
+                _ImageSrc = "/images/Minecraft.png";
+                _IFrameSrc = "https://widget.toornament.com/tournaments/3476256720841089024/stages/3488016200249196544/?_locale=en_US";
+                break;
+            case "call-of-duty-warzone":
+                _ImageSrc = "/images/WarZone.jpg";
+                _IFrameSrc = "https://widget.toornament.com/tournaments/3476259067863236608/stages/3487218145450999808/?_locale=en_US";
+                break;
+            case "nba-2k20":
+                _ImageSrc = "/images/NBA-2K20.jpg";
+                _IFrameSrc = "https://widget.toornament.com/tournaments/3476260676093149184/stages/3478925208876048384/?_locale=en_US";
+                break;
+            case "league-of-legends":
+                _ImageSrc = "/images/LOL.jpg";
+                _IFrameSrc = "https://widget.toornament.com/tournaments/3476261911264198656/stages/3478928061953892352/?_locale=en_US";
+                break;
+            case "super-smash-bros-ultimate":
+                _ImageSrc = "/images/SSBU.jpg";
+                _IFrameSrc = "https://widget.toornament.com/tournaments/3476263981375184896/stages/3478880736775643136/?_locale=en_US";
+                break;
+        };
+    }
+}
 
 
 

@@ -1,9 +1,9 @@
 ﻿@page "/rules/gamerules"
 @page "/rules/gamerules/{nameOfGame}"
 @using System.Globalization
+@using VGT.Client.Blazor.Components
 
-
-
+<PageTitle Title=@PageTitle></PageTitle>
 
     <div class="game-rules-container">
         <div class="game-rules-header">
@@ -46,11 +46,25 @@
         @if (NameOfGame == "minecraft")
         {
             <ul class="game-rules-unorderedList">
-                <li>Minecraft Rule one</li>
-                <li>Rule one</li>
-                <li>Rule one</li>
-                <li>Rule one</li>
-                <li>Rule one</li>
+                <li>Survival Games!</li>
+                <li>Max of 8 players per lobby; if there is less, the number of players will be distributed evenly across all matches.</li>
+                <li>Depending on the number of players registered for this tournament, between ONE and FOUR of the top players from each match will move on to the next round.</li>
+                <li>Three matches will be played. Scoring will take place as follows (subject to change as lobby sizes vary):</li>
+                <ul style="margin-left: 25px;">
+                    <li>1st - 10 pts</li>
+                    <li>2nd - 8 pts</li>
+                    <li>3rd - 6 pts</li>
+                    <li>4th - 4 pts</li>
+                    <li>5th - 3 pts</li>
+                    <li>6th - 2 pts</li>
+                    <li>7th - 1 pt</li>
+                    <li>8th - 0 pts</li>
+                </ul>
+                <li>Those who move on are determined by the number of points they’ve accumulated in that round. Points DO NOT accumulate across rounds.</li>
+                <li>A different map will be selected for each round.</li>
+                <li>There will be a grace period of 30 seconds.</li>
+                <li>Deathmatch is initiated once there are 3 players remaining.</li>
+                <li>TEAMING WILL RESULT IN IMMEDIATE DISQUALIFICATION.</li>
             </ul>
         }
 
@@ -90,11 +104,17 @@
         @if (NameOfGame == "super-smash-bros-ultimate")
         {
             <ul class="game-rules-unorderedList">
-                <li>Smash Rule one</li>
-                <li>Rule one</li>
-                <li>Rule one</li>
-                <li>Rule one</li>
-                <li>Rule one</li>
+                <li>All fighters, including Mii Fighters and DLC Fighters, are permitted. However, fighter choice may NOT be changed between matches of the SAME round.</li>
+                <li>Only the Grand Finale and Loser’s Finals will be BEST OF 3.</li>
+                <li>Stages will be set to omega and battlefield ONLY, with NO stage morphs or hazards.</li>
+                <li>1v1, 3-stocks per match.</li>
+                <li>10 minute time limit per match.</li>
+                <li>Final Smash (FS) Meter will be set to OFF.</li>
+                <li>NO items will be enabled.</li>
+                <li>Spirits are prohibited.</li>
+                <li>Damage Handicap is set to OFF.</li>
+                <li>Damage Percents are shown.</li>
+                <li>Launch Rate is at default value: 1.0x.</li>
             </ul>
         }
     </div>
@@ -107,10 +127,14 @@
 
     string _ImageSrc = null;
 
+    private string PageTitle = null;
+
     protected override void OnInitialized()
     {
         _GameName = NameOfGame == "nba-2k20" ? "NBA 2K 20" : new CultureInfo("en-US", false).TextInfo.ToTitleCase(NameOfGame.Replace('-', ' '));
 
+        PageTitle  = _GameName + " Rules | Games Against COVID";
+        
         switch (NameOfGame)
         {
             case "clash-royale":

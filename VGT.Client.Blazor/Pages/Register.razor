@@ -8,6 +8,8 @@
 @inject NavigationManager NavManager
 @inject ILocalStorageService localStorage
 
+<PageTitle Title="Register | Games Against COVID"></PageTitle>
+
 <PageHeader _Header="Register" _ImageSrc="/images/amazing-grace-logo.png">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</PageHeader>
 
 <h1>Choose your game</h1>
@@ -27,61 +29,220 @@
 {
     if (_CurrentToken == null)
     {
-        if (IsSingleGameChosen())
-        {
-            _CurrentParticipant.GameChosen = _CurrentGameChosen;
-            <h1>Single</h1>
-            <EditForm Model="@_CurrentParticipant" OnValidSubmit="HandleValidSubmit">
-                <p>
-                    <label>
-                        First Name
-                        <InputText @bind-Value="_CurrentParticipant.ParticipantFirstName" />
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Last Name
-                        <br />
-                        <InputText @bind-Value="_CurrentParticipant.ParticipantLastName" />
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Email
-                        <InputText @bind-Value="_CurrentParticipant.ParticipantEMail" placeholder="johndoe@gmail.com" />
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        Phone Number
-                        <InputText @bind-Value="_CurrentParticipant.PhoneOfParticipant" placeholder="(xxx)-xxx-xxxx" />
-                    </label>
-                </p>
-                <p>
-                    <label>
-                        In Game Name
-                        <InputText @bind-Value="_CurrentParticipant.InGameName" />
-                    </label>
-                </p>
-                <button type="submit">
-                    Submit
-                </button>
-            </EditForm>
-        }
-        else
-        {
-            <h1>Team</h1>
-        }
+        <h1>Team</h1>
+        <EditForm Model="@_Team">
+            <p>
+                <label>
+                    Name of Team
+                    <InputText @bind-Value="_Team.NameOfTeam"></InputText>
+                </label>
+            </p>
+            <h1>Team Members</h1>
+            <h3>Team Member #1</h3>
+            <p>
+                <label>
+                    First Name
+                    <InputText @bind-Value="_Team.TeamMembers[0].ParticipantFirstName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Last Name
+                    <br />
+                    <InputText @bind-Value="_Team.TeamMembers[0].ParticipantLastName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Email
+                    <InputText placeholder="johndoe@gmail.com" @bind-Value="_Team.TeamMembers[0].ParticipantEMail" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Phone Number
+                    <InputText placeholder="(xxx)-xxx-xxxx" @bind-Value="_Team.TeamMembers[0].PhoneOfParticipant" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    In Game Name
+                    <InputText @bind-Value="_Team.TeamMembers[0].InGameName" />
+                </label>
+            </p>
+            <h3>Team Member #2</h3>
+            <p>
+                <label>
+                    First Name
+                    <InputText @bind-Value="_Team.TeamMembers[1].ParticipantFirstName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Last Name
+                    <br />
+                    <InputText @bind-Value="_Team.TeamMembers[1].ParticipantLastName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Email
+                    <InputText placeholder="johndoe@gmail.com" @bind-Value="_Team.TeamMembers[1].ParticipantEMail" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Phone Number
+                    <InputText placeholder="(xxx)-xxx-xxxx" @bind-Value="_Team.TeamMembers[1].PhoneOfParticipant" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    In Game Name
+                    <InputText @bind-Value="_Team.TeamMembers[1].InGameName" />
+                </label>
+            </p>
+            <h3>Team Member #3</h3>
+            <p>
+                <label>
+                    First Name
+                    <InputText @bind-Value="_Team.TeamMembers[2].ParticipantFirstName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Last Name
+                    <br />
+                    <InputText @bind-Value="_Team.TeamMembers[2].ParticipantLastName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Email
+                    <InputText placeholder="johndoe@gmail.com" @bind-Value="_Team.TeamMembers[2].ParticipantEMail" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Phone Number
+                    <InputText placeholder="(xxx)-xxx-xxxx" @bind-Value="_Team.TeamMembers[2].PhoneOfParticipant" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    In Game Name
+                    <InputText @bind-Value="_Team.TeamMembers[2].InGameName" />
+                </label>
+            </p>
+            <h3>Team Member #4</h3>
+            <p>
+                <label>
+                    First Name
+                    <InputText @bind-Value="_Team.TeamMembers[3].ParticipantFirstName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Last Name
+                    <br />
+                    <InputText @bind-Value="_Team.TeamMembers[3].ParticipantLastName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Email
+                    <InputText placeholder="johndoe@gmail.com" @bind-Value="_Team.TeamMembers[3].ParticipantEMail" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Phone Number
+                    <InputText placeholder="(xxx)-xxx-xxxx" @bind-Value="_Team.TeamMembers[3].PhoneOfParticipant" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    In Game Name
+                    <InputText @bind-Value="_Team.TeamMembers[3].InGameName" />
+                </label>
+            </p>
+            <h3>Team Member #5</h3>
+            <p>
+                <label>
+                    First Name
+                    <InputText @bind-Value="_Team.TeamMembers[4].ParticipantFirstName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Last Name
+                    <br />
+                    <InputText @bind-Value="_Team.TeamMembers[4].ParticipantLastName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Email
+                    <InputText placeholder="johndoe@gmail.com" @bind-Value="_Team.TeamMembers[4].ParticipantEMail" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Phone Number
+                    <InputText placeholder="(xxx)-xxx-xxxx" @bind-Value="_Team.TeamMembers[4].PhoneOfParticipant" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    In Game Name
+                    <InputText @bind-Value="_Team.TeamMembers[4].InGameName" />
+                </label>
+            </p>
+        </EditForm>
     }
     else
     {
-        <h1>Already logged into Toornament</h1>
-
-        <button type="submit">
-            Submit
-        </button>
+        <h1>Single</h1>
+        <EditForm Model="@_Participant" OnValidSubmit="HandleValidSubmit">
+            <p>
+                <label>
+                    First Name
+                    <InputText @bind-Value="_Participant.ParticipantFirstName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Last Name
+                    <br />
+                    <InputText @bind-Value="_Participant.ParticipantLastName" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Email
+                    <InputText @bind-Value="_Participant.ParticipantEMail" placeholder="johndoe@gmail.com" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    Phone Number
+                    <InputText @bind-Value="_Participant.PhoneOfParticipant" placeholder="(xxx)-xxx-xxxx" />
+                </label>
+            </p>
+            <p>
+                <label>
+                    In Game Name
+                    <InputText @bind-Value="_Participant.InGameName" />
+                </label>
+            </p>
+            <button type="submit">
+                Submit
+            </button>
+        </EditForm>
     }
-}
+
+    <h1>@_Participant.ParticipantFirstName</h1>
+    <h1>Login Result:</h1>
 
 @*Show errors in red*@
 @if (_ErrorRecieved != string.Empty)
@@ -95,10 +256,10 @@
 }
 
 @code
-{
+{ 
     string _CurrentGameChosen = null;
-    Participant _CurrentParticipant = new Participant();
-    Team _CurrentTeam = new Team();
+    Participant _Participant = new Participant();
+    Team _Team = new Team();
     ToornamentToken _CurrentToken = null;
     string _ErrorRecieved = string.Empty;
     string _FogazzyConsole = string.Empty;

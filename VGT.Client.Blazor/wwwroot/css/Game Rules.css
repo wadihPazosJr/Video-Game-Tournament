@@ -36,3 +36,42 @@
     font-size: 25px;
     margin: 15px 0;
 }
+
+@media only screen and (max-width: 681px) {
+    .game-rules-container {
+        margin: 0;
+    }
+    
+    .game-rules-header {
+        flex-direction: column;
+    }
+
+    .game-rules-header img {
+        min-height: 200px;
+        min-width: 200px;
+        max-height: 200px;
+        max-width: 200px;
+        align-self: center;
+        margin-top: 15px;
+    }
+
+    .game-rules-header h1 {
+        text-align: center;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .game-rules-unorderedList {
+        margin-top: 25px;
+        text-align: left;
+        list-style-type:disc;
+        list-style-position: inside;
+        margin-bottom: 50px;
+        margin-left: 5px;
+    }
+
+    .game-rules-unorderedList li {
+        font-size: 15px;
+        margin: 5px 0;
+    }
+}

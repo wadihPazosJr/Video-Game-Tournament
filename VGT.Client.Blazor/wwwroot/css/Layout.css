@@ -1,6 +1,6 @@
 ﻿/*Nav Bar Styling*/
 .navbar {
-    background-color: aquamarine;
+    background-color: midnightblue;
     display: flex;
     align-content: flex-end;
     justify-content: flex-end;
@@ -14,13 +14,15 @@
 .navbar ul {
     list-style-type: none;
     margin-right: 50px;
+    align-self: center;
 }
 
 .navbar-ul li {
     display: inline;
-    margin-left: 10px;
-    margin-right: 10px;
-    color: black;
+    margin-left: 15px;
+    margin-right: 15px;
+    color: white;
+    font-size: 20px;
 }
 
 .navbar-ul li:hover {
@@ -28,7 +30,7 @@
 }
 
 .navbar-logo {
-    height: 25px;
+    height: 75px;
     width: 100px;
     margin-right: auto;
 }
@@ -52,7 +54,7 @@
 
 .footer-nameandheader img {
     height: 100px;
-    width: 200px;
+    width: 150px;
 }
 
 .footer-list {
@@ -111,7 +113,7 @@
 
 .footer-contactUs a:hover{
     text-decoration: none;
-    color: rgb(215, 215, 215);
+    color: red;
 }
 
 .footer-contactUs li {
@@ -168,17 +170,22 @@
         display: none;
     }
 
-    .footer-list {
-        display: none;
+    .footer {
+        flex-direction: column;
     }
 
-    .footer-organizations {
-        display:none;
+    .footer-list {
+        margin: 15px 0;
+
+    }
+
+    .footer-rightSide {
+        flex-direction: column;
+        margin: 0;
     }
 
     .footer-contactUs {
-        margin-right: 0px;
-        margin-left: auto;
+        margin: 15px 0;
     }
 }
 /*Find a way so when it reaches this width it goes away currently not working*/
@@ -196,7 +203,7 @@
 .secondary-navbar-show {
     display: flex;
     justify-content: center;
-    background-color: mediumaquamarine;
+    background-color: midnightblue;
 }
 
 .secondary-navbar-show a {
@@ -208,12 +215,23 @@
 }
 
 .secondary-navbar-show li {
-    color: black;
+    color: white;
     margin-top: 10px;
     margin-bottom: 10px;
     background-clip: padding-box;
+    font-size: 20px;
 }
 
 .secondary-navbar-show li:hover {
+    color: red;
+}
+
+.hamburger-icon {
+    color: white;
+    font-size: 50px;
+    align-self: center;
+}
+
+.hamburger-icon:hover {
     color: red;
 }
