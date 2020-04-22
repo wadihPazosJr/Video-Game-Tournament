@@ -240,7 +240,7 @@
             </button>
         </EditForm>
     }
-
+}
     <h1>@_Participant.ParticipantFirstName</h1>
     <h1>Login Result:</h1>
 
@@ -345,8 +345,8 @@
                 new RegistrationSubmission
                 {
                     SubmissionType = IsSingleGameChosen() ? "Single Participant" : "Team",
-                    ParticipantToRegister = IsSingleGameChosen() ? _CurrentParticipant : null,
-                    TeamToRegister = !IsSingleGameChosen() ? _CurrentTeam : null
+                    ParticipantToRegister = IsSingleGameChosen() ? _Participant : null,
+                    TeamToRegister = !IsSingleGameChosen() ? _Team : null
                 }
             ) ;
         return newSubmissionIDasReturnVal;
