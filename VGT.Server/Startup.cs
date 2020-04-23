@@ -49,9 +49,9 @@ namespace VGT.Server
                                   builder =>
                                   {
                                       if (clientSitesAllowed.Length == 1 && clientSitesAllowed[0] == "*")
-                                          builder.AllowAnyOrigin();
+                                          builder.AllowAnyOrigin().AllowAnyHeader();
                                       else
-                                          builder.WithOrigins(clientSitesAllowed);
+                                          builder.WithOrigins(clientSitesAllowed).AllowAnyHeader();
                                   });
             });
             services.AddControllers();

@@ -12,6 +12,8 @@ namespace VGT.Common.Models
 
         [Required]
         public List<Participant> TeamMembers = new List<Participant>(5);
+
+        public string GameChosen { get; set; }
     }
 
 }

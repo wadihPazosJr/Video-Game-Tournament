@@ -15,19 +15,19 @@
 <h1>Choose your game</h1>
 <form>
     <select @bind="_CurrentGameChosen">
-        <option value="3476251879890862080|Mario Kart 8 Deluxe">Mario Kart 8 Deluxe</option>
-        <option value="3476254303505145856|Rainbow Six Siege">Rainbow Six Siege</option>
-        <option value="3476256720841089024|Minecraft">Minecraft</option>
-        <option value="3476257827289923584|Clash Royale">Clash Royale</option>
-        <option value="3476259067863236608|Call of Duty : Warzone">Call of Duty : Warzone</option>
-        <option value="3476260676093149184|NBA 2K20">NBA 2K20</option>
-        <option value="3476261911264198656|League of Legends">League of Legends</option>
-        <option value="3476263981375184896|Super Smash Bros Ultimate">Super Smash Bros Ultimate</option>
+        <option value="3476251879890862080">Mario Kart 8 Deluxe</option>
+        <option value="3476254303505145856">Rainbow Six Siege</option>
+        <option value="3476256720841089024">Minecraft</option>
+        <option value="3476257827289923584">Clash Royale</option>
+        <option value="3476259067863236608">Call of Duty : Warzone</option>
+        <option value="3476260676093149184">NBA 2K20</option>
+        <option value="3476261911264198656">League of Legends</option>
+        <option value="3476263981375184896">Super Smash Bros Ultimate</option>
     </select>
 </form>
 @if (_CurrentGameChosen != null)
 {
-    if (_CurrentToken == null)
+    if (!IsSingleGameChosen())
     {
         <h1>Team</h1>
         <EditForm Model="@_Team">
@@ -240,11 +240,12 @@
             </button>
         </EditForm>
     }
+}
 
-    <h1>@_Participant.ParticipantFirstName</h1>
-    <h1>Login Result:</h1>
+<h1>@_Participant.ParticipantFirstName</h1>
+<h1>Login Result:</h1>
 
-Show errors in red
+
 @if (_ErrorRecieved != string.Empty)
 {
     <p style="color: red"><em>Error Encountered: @_ErrorRecieved</em></p>
@@ -256,18 +257,18 @@ Show errors in red
 }
 
 @code
-{ 
-    string _CurrentGameChosen = null;
-    Participant _Participant = new Participant();
-    Team _Team = new Team();
-    ToornamentToken _CurrentToken = null;
-    string _ErrorRecieved = string.Empty;
-    string _FogazzyConsole = string.Empty;
+{
+        string _CurrentGameChosen = null;
+        Participant _Participant = new Participant();
+        Team _Team = new Team();
+        ToornamentToken _CurrentToken = null;
+        string _ErrorRecieved = string.Empty;
+        string _FogazzyConsole = string.Empty;
 
-    public void GameSelected()
-    {
-        base.StateHasChanged();
-    }
+        public void GameSelected()
+        {
+            base.StateHasChanged();
+        }
 
     protected override async Task OnInitializedAsync()
     {
@@ -302,17 +303,7 @@ Show errors in red
                                 );
 
                             //Get submission using submission ID from localstorage
-                            RegistrationSubmission submissionInfo = await localStorage.GetItemAsync<RegistrationSubmission>(queryParams["SubmissionID"]);
-                            _FogazzyConsole += JsonSerializer.Serialize(submissionInfo);
-                            if (submissionInfo.SubmissionType == "Single Participant")
-                            {
-                                await Http.PostJsonAsync<Participant>("https://localhost:44366/Registration/RegisterSingleParticipantForTournament", submissionInfo.ParticipantToRegister);
-                            }
-                            else
-                            {
-                                await Http.PostJsonAsync<Team>("https://localhost:44366/Registration/RegisterTeamForTournament", submissionInfo.TeamToRegister);
-                            }
-
+                            await SubmitRegistrationAsync(await localStorage.GetItemAsync<RegistrationSubmission>(queryParams["SubmissionID"]));
                             break;
                         default:
                             throw new Exception("Invalid");
@@ -327,12 +318,31 @@ Show errors in red
         }
     }
 
+    private async Task SubmitRegistrationAsync(RegistrationSubmission RegistrationToSubmit)
+    {
+        RegistrationToSubmit.TokenToUse = _CurrentToken;
+        await Http.PostJsonAsync<RegistrationSubmission>("https://localhost:44366/Registration/RegisterForTournament", RegistrationToSubmit);
+    }
+
     private async Task HandleValidSubmit()
     {
+        if (IsSingleGameChosen())
+            _Participant.GameChosen = _CurrentGameChosen;
+        else
+            _Team.GameChosen = _CurrentGameChosen;
         if (_CurrentToken == null)
         {
             string newSubmissionID = await StoreNewSubmissionForCallbackAsync();
             ToornamentAuthenticationUtility.InitiateLoginFlowToGetNewToken(NavManager, new Uri("https://localhost:44392/Register?RegistrationState=LoginInProgress&SubmissionID=" + newSubmissionID));
+        }
+        else
+        {
+            await SubmitRegistrationAsync(new RegistrationSubmission
+            {
+                SubmissionType = IsSingleGameChosen() ? "Single Participant" : "Team",
+                ParticipantToRegister = IsSingleGameChosen() ? _Participant : null,
+                TeamToRegister = !IsSingleGameChosen() ? _Team : null
+            });
         }
     }
 
@@ -348,7 +358,7 @@ Show errors in red
                     ParticipantToRegister = IsSingleGameChosen() ? _Participant : null,
                     TeamToRegister = !IsSingleGameChosen() ? _Team : null
                 }
-            ) ;
+            );
         return newSubmissionIDasReturnVal;
     }
 

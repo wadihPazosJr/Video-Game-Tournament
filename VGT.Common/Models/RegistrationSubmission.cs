@@ -9,5 +9,6 @@ namespace VGT.Common.Models
         public string SubmissionType { get; set; }
         public Team TeamToRegister { get; set; }
         public Participant ParticipantToRegister { get; set; }
+        public ToornamentToken TokenToUse { get; set; }
     }
 }
